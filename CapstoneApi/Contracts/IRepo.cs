@@ -10,5 +10,6 @@ namespace CapstoneApi.Contracts
         public IEnumerable<AccountTicket> GetTicketsForUser(AccountTicketRequest acc);
         public IEnumerable<AccountTicket> CreateNewTickets(NewTickets tickets);
         public IEnumerable<AccountTicket> CreateUser(Account acc);
+        public IEnumerable<VerifyUser> VerifyUser(VerifyUserRequest acc);
     }
 }

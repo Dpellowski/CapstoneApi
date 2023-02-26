@@ -18,7 +18,7 @@ namespace CapstoneApi.Repos
 
         public IEnumerable<FoodOption> GetFoodOptions()
         {
-            var procedureName = "stp_GetFood";
+            var procedureName = "stp_GetFood_SM";
 
             using (var connection = _context.CreateConnection())
             {
@@ -104,6 +104,22 @@ namespace CapstoneApi.Repos
             using (var connection = _context.CreateConnection())
             {
                 var repo = connection.Query<AccountTicket>
+                    (procedureName, dp, commandType: CommandType.StoredProcedure);
+
+                return repo;
+            }
+        }
+
+        public IEnumerable<VerifyUser> VerifyUser(VerifyUserRequest acc)
+        {
+            var procedureName = "stp_VerifyUser";
+            DynamicParameters dp = new DynamicParameters();
+            dp.Add("Password", acc.password);
+            dp.Add("Email", acc.email);
+
+            using (var connection = _context.CreateConnection())
+            {
+                var repo = connection.Query<VerifyUser>
                     (procedureName, dp, commandType: CommandType.StoredProcedure);
 
                 return repo;

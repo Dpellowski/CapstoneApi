@@ -87,6 +87,17 @@ namespace CapstoneApi.Controllers
             }
             return Ok(repo);
         }
+        [HttpPost]
+        [Route("Login")]
+        public IActionResult VerifyUser(VerifyUserRequest acc)
+        {
+            var repo = _repo.VerifyUser(acc);
+            if (repo is null)
+            {
+                return NotFound();
+            }
+            return Ok(repo);
+        }
 
     }
 }
