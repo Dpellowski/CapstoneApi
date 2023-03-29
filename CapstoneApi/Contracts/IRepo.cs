@@ -8,8 +8,9 @@ namespace CapstoneApi.Contracts
         public IEnumerable<Train> GetTrains();
         public IEnumerable<AccountTicket> GetTicketsByLocation(string destination);
         public IEnumerable<AccountTicket> GetTicketsForUser(AccountTicketRequest acc);
-        public IEnumerable<AccountTicket> CreateNewTickets(NewTickets tickets);
-        public IEnumerable<AccountTicket> CreateUser(Account acc);
+        public int CreateNewTickets(NewTickets tickets);
+        public int CreateUser(Account acc);
         public IEnumerable<VerifyUser> VerifyUser(VerifyUserRequest acc);
+        public int PurchaseTicket(PurchaseTicketRequest ptr);
     }
 }

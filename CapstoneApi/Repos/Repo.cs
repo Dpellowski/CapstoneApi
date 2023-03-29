@@ -72,26 +72,39 @@ namespace CapstoneApi.Repos
             }
         }
 
-        public IEnumerable<AccountTicket> CreateNewTickets(NewTickets tickets)
+        public int CreateNewTickets(NewTickets tickets)
         {
+            DateTime arrivalTime = DateTime.Parse(tickets.ArrivalTime, System.Globalization.CultureInfo.InvariantCulture);
+            DateTime departTime = DateTime.Parse(tickets.DepartTime, System.Globalization.CultureInfo.InvariantCulture);
+
             var procedureName = "stp_CreateNewTickets";
             DynamicParameters dp = new DynamicParameters();
+
             dp.Add("OpenSeats", tickets.openSeats);
-            dp.Add("TrainSID", tickets.trainSID);
+            dp.Add("Name", tickets.Name);
             dp.Add("Destination", tickets.Destination);
-            dp.Add("DepartTime", tickets.DepartTime);
-            dp.Add("ArrivalTime", tickets.ArrivalTime);
+            dp.Add("DepartTime", departTime);
+            dp.Add("ArrivalTime", arrivalTime);
+            dp.Add("DepartStation", tickets.DepartStation);
 
             using (var connection = _context.CreateConnection())
             {
-                var repo = connection.Query<AccountTicket>
-                    (procedureName, dp, commandType: CommandType.StoredProcedure);
+                try
+                {
+                    var repo = connection.Execute
+                        (procedureName, dp, commandType: CommandType.StoredProcedure);
 
-                return repo;
+                    return repo;
+                }
+                catch
+                {
+                    return 0;
+                }
+
             }
         }
 
-        public IEnumerable<AccountTicket> CreateUser(Account acc)
+        public int CreateUser(Account acc)
         {
             var procedureName = "stp_CreateUser";
             DynamicParameters dp = new DynamicParameters();
@@ -103,10 +116,18 @@ namespace CapstoneApi.Repos
 
             using (var connection = _context.CreateConnection())
             {
-                var repo = connection.Query<AccountTicket>
-                    (procedureName, dp, commandType: CommandType.StoredProcedure);
+                try
+                {
+                    var repo = connection.Execute
+                        (procedureName, dp, commandType: CommandType.StoredProcedure);
 
-                return repo;
+                    return repo;
+                }
+                catch
+                {
+                    return 0;
+                }
+
             }
         }
 
@@ -123,6 +144,28 @@ namespace CapstoneApi.Repos
                     (procedureName, dp, commandType: CommandType.StoredProcedure);
 
                 return repo;
+            }
+        }
+
+        public int PurchaseTicket(PurchaseTicketRequest ptr)
+        {
+            var procedureName = "stp_PurchaseTicket";
+            DynamicParameters dp = new DynamicParameters();
+            dp.Add("TicketSID", ptr.ticketSID);
+            dp.Add("AccountSID", ptr.accountSID);
+            dp.Add("FoodOptionSID", ptr.foodOptionSID);
+
+            using (var connection = _context.CreateConnection())
+            {
+                try
+                {
+                    var repo = connection.Execute
+                        (procedureName, dp, commandType: CommandType.StoredProcedure);
+
+                    return repo;
+                }
+                catch { return 0; }
+
             }
         }
     }

@@ -23,10 +23,6 @@ namespace CapstoneApi.Controllers
         public IActionResult GetFoodOptions()
         {
             var repo = _repo.GetFoodOptions();
-            if (repo is null)
-            {
-                return NotFound();
-            }
             return Ok(repo);
         }
 
@@ -35,10 +31,6 @@ namespace CapstoneApi.Controllers
         public IActionResult GetTrains()
         {
             var repo = _repo.GetTrains();
-            if (repo is null)
-            {
-                return NotFound();
-            }
             return Ok(repo);
         }
 
@@ -47,10 +39,6 @@ namespace CapstoneApi.Controllers
         public IActionResult GetAccountTickets(AccountTicketRequest acc)
         {
             var repo = _repo.GetTicketsForUser(acc);
-            if (repo is null)
-            {
-                return NotFound();
-            }
             return Ok(repo);
         }
         [HttpPost]
@@ -58,10 +46,6 @@ namespace CapstoneApi.Controllers
         public IActionResult GetTicketsByDestination(string destination)
         {
             var repo = _repo.GetTicketsByLocation(destination);
-            if (repo is null)
-            {
-                return NotFound();
-            }
             return Ok(repo);
         }
 
@@ -70,10 +54,6 @@ namespace CapstoneApi.Controllers
         public IActionResult CreateNewTickets(NewTickets tickets)
         {
             var repo = _repo.CreateNewTickets(tickets);
-            if (repo is null)
-            {
-                return NotFound();
-            }
             return Ok(repo);
         }
         [HttpPost]
@@ -81,10 +61,6 @@ namespace CapstoneApi.Controllers
         public IActionResult CreateUser(Account acc)
         {
             var repo = _repo.CreateUser(acc);
-            if (repo is null)
-            {
-                return NotFound();
-            }
             return Ok(repo);
         }
         [HttpPost]
@@ -92,10 +68,14 @@ namespace CapstoneApi.Controllers
         public IActionResult VerifyUser(VerifyUserRequest acc)
         {
             var repo = _repo.VerifyUser(acc);
-            if (repo is null)
-            {
-                return NotFound();
-            }
+            return Ok(repo);
+        }
+
+        [HttpPost]
+        [Route("PurchaseTicket")]
+        public IActionResult PurchaseTicket(PurchaseTicketRequest ptr)
+        {
+            var repo = _repo.PurchaseTicket(ptr);
             return Ok(repo);
         }
 

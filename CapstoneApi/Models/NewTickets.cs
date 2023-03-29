@@ -3,10 +3,11 @@
     public class NewTickets
     {
         public int openSeats { get; set; }
-        public int trainSID { get; set; }
+        public string Name { get; set; }
         public string Destination { get; set; }
-        public DateTime DepartTime { get; set; }
-        public DateTime ArrivalTime { get; set; }
+        public string DepartStation { get; set; }
+        public string DepartTime { get; set; }
+        public string ArrivalTime { get; set; }
 
     }
 }
