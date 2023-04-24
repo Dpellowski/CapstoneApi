@@ -11,6 +11,7 @@
         public DateTime ArrivalTime { get; set; }
         public int? AccountSID { get; set; }
         public int? FoodSID { get; set; }
+        public int? Refund { get; set; }
 
     }
 }

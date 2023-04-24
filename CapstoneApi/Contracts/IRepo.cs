@@ -12,5 +12,11 @@ namespace CapstoneApi.Contracts
         public int CreateUser(Account acc);
         public IEnumerable<VerifyUser> VerifyUser(VerifyUserRequest acc);
         public int PurchaseTicket(PurchaseTicketRequest ptr);
+        public int RequestRefund(RefundReq rf);
+        public int ApproveRefund(RefundReq rf);
+        public int ReplacePassword(ReplacePasswordReq rpr);
+        public int CreateTrain(CreateTrainReq ctr);
+        public int CreateFoodOption(CreateFoodReq cfr);
+        public int DeleteTicket(TicketDeleteReq tdr);
     }
 }

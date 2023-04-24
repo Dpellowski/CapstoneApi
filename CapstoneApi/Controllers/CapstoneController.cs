@@ -79,5 +79,54 @@ namespace CapstoneApi.Controllers
             return Ok(repo);
         }
 
+        [HttpPost]
+        [Route("RequestRefund")]
+        public IActionResult RequestRefund(RefundReq rf)
+        {
+            var repo = _repo.RequestRefund(rf);
+            return Ok(repo);
+        }
+
+        [HttpPost]
+        [Route("ApproveRefund")]
+        public IActionResult ApproveRefund(RefundReq rf)
+        {
+            var repo = _repo.ApproveRefund(rf);
+            return Ok(repo);
+        }
+
+        [HttpPost]
+        [Route("ReplacePassword")]
+        public IActionResult ReplacePassword(ReplacePasswordReq rpr)
+        {
+            var repo = _repo.ReplacePassword(rpr);
+            return Ok(repo);
+        }
+
+        [HttpPost]
+        [Route("CreateTrain")]
+        public IActionResult CreateTrain(CreateTrainReq ctr)
+        {
+            var repo = _repo.CreateTrain(ctr);
+            return Ok(repo);
+        }
+
+        [HttpPost]
+        [Route("CreateFoodOption")]
+        public IActionResult CreateFoodOption(CreateFoodReq cfr)
+        {
+            var repo = _repo.CreateFoodOption(cfr);
+            return Ok(repo);
+        }
+
+        [HttpPost]
+        [Route("DeleteTicket")]
+        public IActionResult DeleteTicket(TicketDeleteReq tdr)
+        {
+            var repo = _repo.DeleteTicket(tdr);
+            return Ok(repo);
+        }
+
+
     }
 }

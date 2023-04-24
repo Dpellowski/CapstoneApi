@@ -168,5 +168,128 @@ namespace CapstoneApi.Repos
 
             }
         }
+
+        public int RequestRefund(RefundReq rf)
+        {
+            var procedureName = "stp_RequestRefund";
+            DynamicParameters dp = new DynamicParameters();
+            dp.Add("TicketSID", rf.TicketSID);
+
+            using (var connection = _context.CreateConnection())
+            {
+                try
+                {
+                    var repo = connection.Execute
+                        (procedureName, dp, commandType: CommandType.StoredProcedure);
+
+                    return repo;
+                }
+                catch { return 0; }
+
+            }
+        }
+
+        public int ApproveRefund(RefundReq rf)
+        {
+            var procedureName = "stp_ApproveRefund";
+            DynamicParameters dp = new DynamicParameters();
+            dp.Add("TicketSID", rf.TicketSID);
+
+            using (var connection = _context.CreateConnection())
+            {
+                try
+                {
+                    var repo = connection.Execute
+                        (procedureName, dp, commandType: CommandType.StoredProcedure);
+
+                    return repo;
+                }
+                catch { return 0; }
+
+            }
+        }
+
+        public int ReplacePassword(ReplacePasswordReq rpr)
+        {
+            var procedureName = "stp_ReplacePassword";
+            DynamicParameters dp = new DynamicParameters();
+            dp.Add("AccountSID", rpr.AccountSID);
+            dp.Add("NewPassword", rpr.NewPassword);
+
+            using (var connection = _context.CreateConnection())
+            {
+                try
+                {
+                    var repo = connection.Execute
+                        (procedureName, dp, commandType: CommandType.StoredProcedure);
+
+                    return repo;
+                }
+                catch { return 0; }
+
+            }
+        }
+
+        public int CreateTrain(CreateTrainReq ctr)
+        {
+            var procedureName = "stp_CreateTrain";
+            DynamicParameters dp = new DynamicParameters();
+            dp.Add("TrainName", ctr.TrainName);
+            dp.Add("PassengerCapacity", ctr.PassengerCapacity);
+
+            using (var connection = _context.CreateConnection())
+            {
+                try
+                {
+                    var repo = connection.Execute
+                        (procedureName, dp, commandType: CommandType.StoredProcedure);
+
+                    return repo;
+                }
+                catch { return 0; }
+
+            }
+        }
+
+        public int CreateFoodOption(CreateFoodReq cfr)
+        {
+            var procedureName = "stp_CreateFoodOption";
+            DynamicParameters dp = new DynamicParameters();
+            dp.Add("FoodOption", cfr.FoodOption);
+            dp.Add("Img", cfr.Img);
+
+            using (var connection = _context.CreateConnection())
+            {
+                try
+                {
+                    var repo = connection.Execute
+                        (procedureName, dp, commandType: CommandType.StoredProcedure);
+
+                    return repo;
+                }
+                catch { return 0; }
+
+            }
+        }
+
+        public int DeleteTicket(TicketDeleteReq tdr)
+        {
+            var procedureName = "stp_DeleteTicket";
+            DynamicParameters dp = new DynamicParameters();
+            dp.Add("TicketSID", tdr.TicketSid);
+
+            using (var connection = _context.CreateConnection())
+            {
+                try
+                {
+                    var repo = connection.Execute
+                        (procedureName, dp, commandType: CommandType.StoredProcedure);
+
+                    return repo;
+                }
+                catch { return 0; }
+
+            }
+        }
     }
 }
