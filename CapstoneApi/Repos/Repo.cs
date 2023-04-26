@@ -29,6 +29,19 @@ namespace CapstoneApi.Repos
             }
         }
 
+        public IEnumerable<AccountTicket> GetRequestedRefunds()
+        {
+            var procedureName = "stp_GetAllTicketsRefunds_SM";
+
+            using (var connection = _context.CreateConnection())
+            {
+                var repo = connection.Query<AccountTicket>
+                    (procedureName, commandType: CommandType.StoredProcedure);
+
+                return repo;
+            }
+        }
+
         public IEnumerable<Train> GetTrains()
         {
             var procedureName = "stp_GetTrains_SM";

@@ -127,6 +127,14 @@ namespace CapstoneApi.Controllers
             return Ok(repo);
         }
 
+        [HttpGet]
+        [Route("GetRequestedRefunds")]
+        public IActionResult GetRequestedRefunds()
+        {
+            var repo = _repo.GetRequestedRefunds();
+            return Ok(repo);
+        }
+
 
     }
 }

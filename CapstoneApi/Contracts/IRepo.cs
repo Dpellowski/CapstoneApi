@@ -18,5 +18,6 @@ namespace CapstoneApi.Contracts
         public int CreateTrain(CreateTrainReq ctr);
         public int CreateFoodOption(CreateFoodReq cfr);
         public int DeleteTicket(TicketDeleteReq tdr);
+        public IEnumerable<AccountTicket> GetRequestedRefunds();
     }
 }
